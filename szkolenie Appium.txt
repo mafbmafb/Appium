@@ -1,0 +1,45 @@
+C:\Users\mafb\AppData\Local\Android\Sdk
+
+https://developer.android.com/reference/android/view/KeyEvent
+uiautomatorviewer 2
+\Users\mafb>adb devices
+List of devices attached
+
+uruchamianie appium serwer
+ appium -a 127.0.0.1 -p 4729 -cp 4729 -bp 4829
+ 
+ zbieranie widoku
+ $ adb shell
+
+2|shell@eagle801:/ $ dumpsys window windows | grep -E 'mCurrentFocus'
+  mCurrentFocus=Window{23bc8a31 u0 com.android.vending/com.android.vending.AssetBrowserActivity}
+  
+  
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='Wyszukaj']")
+private MobileElement searchButton;
+
+GIT
+powershell
+
+PS D:\SzkolenieAppium> ren gitignore.txt .gitignore
+PS D:\SzkolenieAppium> git init
+Initialized empty Git repository in D:/SzkolenieAppium/.git/
+PS D:\SzkolenieAppium> git add .\.gitignore
+PS D:\SzkolenieAppium> git commit -m "adding gitignre"
+[master (root-commit) f6b24fa] adding gitignre
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
+PS D:\SzkolenieAppium> git add *
+warning: LF will be replaced by CRLF in SzkolenieAppium.iml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in pom.xml.
+The file will have its original line endings in your working directory
+PS D:\SzkolenieAppium> git commit -m "adding tests"
+[master c8b8a9f] adding tests
+ 5 files changed, 223 insertions(+)
+ create mode 100644 SzkolenieAppium.iml
+ create mode 100644 pom.xml
+ create mode 100644 src/test/java/AppiumTest.java
+ create mode 100644 src/test/java/StoreStartPage.java
+ create mode 100644 szkolenie Appium.txt
+PS D:\SzkolenieAppium> PS D:\SzkolenieAppium> ren gitignore.txt .gitignore
