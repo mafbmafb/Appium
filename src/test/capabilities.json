@@ -1,0 +1,12 @@
+{
+  "VERSION": "5.0",
+  "deviceName": "Eagle One",
+  "udid": "01234567890123456789",
+  "platformName": "Android",
+  "appPackage": "com.android.vending",
+  "appActivity": "com.android.vending.AssetBrowserActivity",
+  "autoGrantPermissions": true,
+  "automationName": "UiAutomator2",
+  "androidInstallTimeout": 900000,
+  "newCommandTimeout": 900000
+}

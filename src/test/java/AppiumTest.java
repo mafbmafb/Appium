@@ -1,3 +1,4 @@
+import Framework.Capabilities;
 import Framework.DataProviders;
 import Framework.User;
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 
@@ -36,12 +38,36 @@ public class AppiumTest {
     public FluentWait<WebDriver> wait;
     public DesiredCapabilities capabilities;
 
+    public DesiredCapabilities setCapabilities() throws FileNotFoundException {
+        Gson g = new Gson();
+        String pathData = "./src/test/capabilities.json";
+        BufferedReader bufferReader = new BufferedReader(new FileReader(pathData));
+        Capabilities capability = g.fromJson(bufferReader, Capabilities.class);
 
-    //  @Test
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        capabilities.setCapability("VERSION", capability.version);
+        capabilities.setCapability("deviceName", capability.deviceName);
+        capabilities.setCapability("udid", capability.udid);
+        capabilities.setCapability("platformName", capability.platformName);
+        capabilities.setCapability("appPackage", capability.appPackage);
+        capabilities.setCapability("appActivity", capability.appActivity);
+        capabilities.setCapability("autoGrantPermissions", capability.autoGrantPermissions);
+        capabilities.setCapability("automationName", capability.automationName);
+        capabilities.setCapability("androidInstallTimeout", capability.androidInstallTimeout);
+        capabilities.setCapability("newCommandTimeout", capability.newCommandTimeout);
+
+        return capabilities;
+    }
+
+    @Test
     public void testName(ITestContext context) throws Exception {
-        capabilities = new DesiredCapabilities();
+
+
+       //DesiredCapabilities capability = setCapabilities();
+
         //capabilities.setCapability("BROWSER_NAME", "Android");
-        capabilities.setCapability("VERSION", "5.0");
+         /* capabilities.setCapability("VERSION", "5.0");
         capabilities.setCapability("deviceName", "Eagle One");
         capabilities.setCapability("udid", "01234567890123456789");
         capabilities.setCapability("platformName", "Android");
@@ -51,9 +77,9 @@ public class AppiumTest {
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("androidInstallTimeout", 900000);
         capabilities.setCapability("newCommandTimeout", 900000);
+        */
 
-
-        this.driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4729/wd/hub"), capabilities);
+        this.driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4729/wd/hub"), setCapabilities());
 
 
         this.wait = new WebDriverWait(driver, 120)
@@ -117,4 +143,6 @@ public class AppiumTest {
     public class Person {
         public String name;
     }
+
+
 }
