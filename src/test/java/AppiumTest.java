@@ -1,3 +1,7 @@
+import Framework.DataProviders;
+import Framework.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.qameta.allure.Description;
@@ -12,8 +16,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.net.URL;
 
 /**
@@ -64,17 +72,49 @@ public class AppiumTest {
         driver.quit();
     }
 
-    @Test(groups={"smoke","regression"})
+
+    @Test(groups = {"smoke", "regression"}, dataProvider = "smokeProvider", dataProviderClass = DataProviders.class)
     @Story("Fake smoke test")
-    public void smokeTest() throws Exception {
+    public void smokeTest(String name, int arg) throws Exception {
         System.out.println("Hello smoke");
+        System.out.println(name);
+        System.out.println(arg);
     }
 
-    @Test(groups=("regression"))
+    @Test(groups = ("regression"))
     @Story("Fake regression test")
     @Description("Fake regression test description")
     public void regressionTest() throws Exception {
         System.out.println("Regression test");
 
+    }
+
+    @Test
+    public void loader() throws Exception {
+        Gson g = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Person person1 = g.fromJson("{\"name\": \"John\"}", Person.class);
+        Person person2 = gson.fromJson("{\"name\": \"John\"}", Person.class);
+
+        System.out.println(person1.name);
+        System.out.println(g.toJson(person1));
+        System.out.println(gson.toJson(person2));
+
+        String pathData = "./src/test/data.json";
+        BufferedReader bufferReader = new BufferedReader(new FileReader(pathData));
+
+        User user1 = g.fromJson(bufferReader, User.class);
+        System.out.println(user1.name);
+        System.out.println(user1.language);
+        System.out.println(user1.location);
+        System.out.println(user1.personal.age);
+        System.out.println(user1.personal.hobby);
+
+
+    }
+
+    public class Person {
+        public String name;
     }
 }

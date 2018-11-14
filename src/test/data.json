@@ -1,0 +1,9 @@
+{
+  "name": "Marek",
+  "language": "Java",
+  "location": "Wroclaw",
+  "personal": {
+    "age": 22,
+    "hobby": "sleeping"
+  }
+}
