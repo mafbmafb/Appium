@@ -43,3 +43,33 @@ PS D:\SzkolenieAppium> git commit -m "adding tests"
  create mode 100644 src/test/java/StoreStartPage.java
  create mode 100644 szkolenie Appium.txt
 PS D:\SzkolenieAppium> PS D:\SzkolenieAppium> ren gitignore.txt .gitignore
+
+
+
+
+echo "# Appium" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/mafbmafb/Appium.git
+git push -u origin master
+
+
+
+
+
+<properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+</properties>
+
+
+
+
+appium -a 127.0.0.1 -p 4729 -cp 4729 -bp 4829
+		
+	dumpsys window windows | grep -E ‘mCurrentFocus’		driver.pressKeyCode(AndroidKeyCode.BACK);	((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.HOME));
+	adb shell input keyevent 29
+		
+		
+	mvn test -Dgroups=smoke,regression

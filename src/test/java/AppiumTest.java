@@ -1,5 +1,9 @@
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +19,9 @@ import java.net.URL;
 /**
  * Created by mafb on 13.11.2018.
  */
+
+@Epic("Google apps")
+@Feature("Play store")
 public class AppiumTest {
 
     public AndroidDriver<AndroidElement> driver;
@@ -22,7 +29,7 @@ public class AppiumTest {
     public DesiredCapabilities capabilities;
 
 
-    @Test
+    //  @Test
     public void testName(ITestContext context) throws Exception {
         capabilities = new DesiredCapabilities();
         //capabilities.setCapability("BROWSER_NAME", "Android");
@@ -55,5 +62,19 @@ public class AppiumTest {
         storeStartPage.searchInStore();
         Thread.sleep(1000);
         driver.quit();
+    }
+
+    @Test(groups={"smoke","regression"})
+    @Story("Fake smoke test")
+    public void smokeTest() throws Exception {
+        System.out.println("Hello smoke");
+    }
+
+    @Test(groups=("regression"))
+    @Story("Fake regression test")
+    @Description("Fake regression test description")
+    public void regressionTest() throws Exception {
+        System.out.println("Regression test");
+
     }
 }
